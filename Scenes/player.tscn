@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://chi3rtd31dbmn"]
+
+[ext_resource type="Texture2D" uid="uid://dhd3j6qqoimq3" path="res://Sprites/slime_face.png" id="1_542st"]
+[ext_resource type="Texture2D" uid="uid://4csns4bfbdr6" path="res://Sprites/slime_body.png" id="1_jlagt"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_x18sv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nw67k"]
+radius = 59.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_x18sv")
+
+[node name="Sprite" type="Node2D" parent="."]
+
+[node name="Body" type="Sprite2D" parent="Sprite"]
+texture = ExtResource("1_jlagt")
+
+[node name="Eyes" type="Sprite2D" parent="Sprite"]
+position = Vector2(0, 8)
+texture = ExtResource("1_542st")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
+shape = SubResource("CircleShape2D_nw67k")
