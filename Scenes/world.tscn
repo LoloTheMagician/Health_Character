@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://3bfdextdewe6"]
+
+[ext_resource type="PackedScene" uid="uid://chi3rtd31dbmn" path="res://Scenes/player.tscn" id="1_ctneu"]
+
+[node name="World" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_ctneu")]
+position = Vector2(593, 311)
+damage = 25
+
+[node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 0, 0, 1)
+offset_left = 683.0
+offset_top = 311.0
+offset_right = 760.0
+offset_bottom = 342.0
+text = "DAMAGE"
+
+[connection signal="pressed" from="Button" to="Player" method="_on_button_pressed"]
