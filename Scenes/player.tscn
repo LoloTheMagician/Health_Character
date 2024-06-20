@@ -1,14 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://chi3rtd31dbmn"]
+[gd_scene load_steps=6 format=3 uid="uid://chi3rtd31dbmn"]
 
 [ext_resource type="Texture2D" uid="uid://dhd3j6qqoimq3" path="res://Sprites/slime_face.png" id="1_542st"]
 [ext_resource type="Texture2D" uid="uid://4csns4bfbdr6" path="res://Sprites/slime_body.png" id="1_jlagt"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_x18sv"]
+[ext_resource type="Script" path="res://Scripts/Health.gd" id="4_u587v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nw67k"]
 radius = 59.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_x18sv")
+damage = 25
 
 [node name="Sprite" type="Node2D" parent="."]
 
@@ -22,3 +24,40 @@ texture = ExtResource("1_542st")
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8)
 shape = SubResource("CircleShape2D_nw67k")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = 67.0
+offset_bottom = 67.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("4_u587v")
+
+[node name="Health_Bar" type="ProgressBar" parent="Control"]
+unique_name_in_owner = true
+modulate = Color(0, 1, 0.266667, 1)
+layout_mode = 0
+offset_left = -70.0
+offset_top = -14.0
+offset_right = 71.0
+offset_bottom = 13.0
+value = 100.0
+show_percentage = false
+
+[node name="Health_Label" type="Label" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = -28.0
+offset_top = -149.0
+offset_right = 24.0
+offset_bottom = -126.0
+text = "Health: 
+"
+
+[connection signal="damage_taken" from="." to="Control" method="_on_player_damage_taken"]
+[connection signal="no_health" from="Control" to="." method="_on_control_no_health"]
